@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TweenAlpha : TweenBase
 {
     [SerializeField]
@@ -28,6 +29,14 @@ public class TweenAlpha : TweenBase
     public override void RunTween()
     {
         StartCoroutine(RunAlpha());
+    }
+
+    public override void RestartTween()
+    {
+        StopAllCoroutines();
+        //StartCoroutine(RunAlpha());
+        Debug.Log("Restarting coroutine");
+        StartCoroutine(StartCoroutineInEditor(RunAlpha()));
     }
 
     public void RunTween(float startAlpha, float endAlpha)
@@ -94,4 +103,5 @@ public class TweenAlpha : TweenBase
             }
         }
     }
+    
 }

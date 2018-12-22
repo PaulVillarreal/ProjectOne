@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TweenPosition : TweenBase
 {
     [SerializeField]
@@ -30,6 +31,12 @@ public class TweenPosition : TweenBase
 
     public override void RunTween()
     {
+        StartCoroutine(RunMove());
+    }
+
+    public override void RestartTween()
+    {
+        StopAllCoroutines();
         StartCoroutine(RunMove());
     }
 

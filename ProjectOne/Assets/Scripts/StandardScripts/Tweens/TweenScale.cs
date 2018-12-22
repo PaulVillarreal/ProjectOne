@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TweenScale : TweenBase
 {
     [SerializeField]
@@ -28,6 +29,12 @@ public class TweenScale : TweenBase
 
     public override void RunTween()
     {
+        StartCoroutine(RunScale());
+    }
+
+    public override void RestartTween()
+    {
+        StopAllCoroutines();
         StartCoroutine(RunScale());
     }
 

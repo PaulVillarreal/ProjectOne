@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         facingRight = !facingRight;
         myTransform.Rotate(Vector3.up, 180);
-        Speed *= -.25f;
+        Speed *= -.0125f;
     }
 
     void UpdateRunAnim(float Speed)
@@ -208,6 +208,7 @@ public class PlayerController : MonoBehaviour
         if (other.tag == "Floor")
         {
             Speed -= 0.02f;
+            _velocity = Vector3.zero;
             isJumping = false;
         }
     }

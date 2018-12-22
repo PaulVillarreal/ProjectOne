@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class TweenRotateToObject : TweenBase
 {
     [SerializeField]
@@ -26,6 +27,12 @@ public class TweenRotateToObject : TweenBase
 
     public override void RunTween()
     {
+        StartCoroutine(RunRotate());
+    }
+
+    public override void RestartTween()
+    {
+        StopAllCoroutines();
         StartCoroutine(RunRotate());
     }
 

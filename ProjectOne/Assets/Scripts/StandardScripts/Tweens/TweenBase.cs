@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[ExecuteInEditMode]
 public class TweenBase : MonoBehaviour
 {
     public enum WrapMode
@@ -31,7 +32,14 @@ public class TweenBase : MonoBehaviour
     [SerializeField]
     protected UnityEvent _callOnEnd;
 
+    private static List<IEnumerator> CoroutineInProgress = new List<IEnumerator>();
+
     public virtual void RunTween()
+    {
+
+    }
+
+    public virtual void RestartTween()
     {
 
     }
@@ -49,5 +57,11 @@ public class TweenBase : MonoBehaviour
     public void RemoveEndCall(UnityAction functionToRemove)
     {
         _callOnEnd.RemoveListener(functionToRemove);
+    }
+
+    public static IEnumerator StartCoroutineInEditor(IEnumerator newCoroutine)
+    {
+        CoroutineInProgress.Add(newCoroutine);
+        return newCoroutine;
     }
 }
